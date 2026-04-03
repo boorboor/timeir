@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { untrack } from 'svelte';
+	import { resolveRoute } from '$app/paths';
 	import { getToday } from '$lib/calendar';
 	import TodayBanner from '$lib/components/TodayBanner.svelte';
 	import CalendarGrid from '$lib/components/CalendarGrid.svelte';
@@ -28,7 +29,7 @@
 	<!-- ── Header ─────────────────────────────────────────────────── -->
 	<header class="site-header">
 		<div class="header-inner">
-			<a href="/" class="logo">
+			<a href={resolveRoute('/')} class="logo">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					width="24"

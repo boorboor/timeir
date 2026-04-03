@@ -87,13 +87,13 @@
 
 	<!-- Weekday header row -->
 	<div class="cal-grid">
-		{#each WEEK_DAYS_SHORT as day, i}
+		{#each WEEK_DAYS_SHORT as day, i (i)}
 			<div class="weekday-header" class:friday={i === 6}>{day}</div>
 		{/each}
 
 		<!-- Calendar cells -->
-		{#each grid as row}
-			{#each row as cell, colIdx}
+		{#each grid as row, rowIdx (rowIdx)}
+			{#each row as cell, colIdx (`${rowIdx}-${colIdx}`)}
 				<div class="cal-cell" class:out-of-month={!cell.isCurrentMonth} class:friday={colIdx === 6}>
 					<span class="j-day" class:today={cell.isToday}>
 						{toPersian(cell.jalali.jd)}

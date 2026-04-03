@@ -39,6 +39,10 @@ export default defineConfig(
 	{
 		// Override or add rule settings here, such as:
 		// 'svelte/button-has-type': 'error'
-		rules: {}
+		rules: {
+			// $app/paths in SvelteKit 2 exports `resolveRoute`, not the legacy `resolve` that
+			// this rule tracks. Configure ignoreLinks until the rule is updated for SK2.
+			'svelte/no-navigation-without-resolve': ['error', { ignoreLinks: true }]
+		}
 	}
 );

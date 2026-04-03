@@ -104,7 +104,7 @@
 				<div class="select-group">
 					<label for="jy">سال</label>
 					<select id="jy" bind:value={jy} onchange={fromJalali}>
-						{#each jalaliYears as y}
+						{#each jalaliYears as y (y)}
 							<option value={y}>{toPersian(y)}</option>
 						{/each}
 					</select>
@@ -112,7 +112,7 @@
 				<div class="select-group">
 					<label for="jm">ماه</label>
 					<select id="jm" bind:value={jm} onchange={fromJalali}>
-						{#each JALALI_MONTHS as name, i}
+						{#each JALALI_MONTHS as name, i (i)}
 							<option value={i + 1}>{name}</option>
 						{/each}
 					</select>
@@ -120,7 +120,7 @@
 				<div class="select-group">
 					<label for="jd">روز</label>
 					<select id="jd" bind:value={jd} onchange={fromJalali}>
-						{#each jalaliDays as d}
+						{#each jalaliDays as d (d)}
 							<option value={d}>{toPersian(d)}</option>
 						{/each}
 					</select>
@@ -136,7 +136,7 @@
 				<div class="select-group">
 					<label for="gy">Year</label>
 					<select id="gy" bind:value={gy} onchange={fromGregorian}>
-						{#each gregorianYears as y}
+						{#each gregorianYears as y (y)}
 							<option value={y}>{y}</option>
 						{/each}
 					</select>
@@ -144,7 +144,7 @@
 				<div class="select-group">
 					<label for="gm">Month</label>
 					<select id="gm" bind:value={gm} onchange={fromGregorian}>
-						{#each GREGORIAN_MONTHS_EN as name, i}
+						{#each GREGORIAN_MONTHS_EN as name, i (i)}
 							<option value={i + 1}>{name}</option>
 						{/each}
 					</select>
@@ -152,7 +152,7 @@
 				<div class="select-group">
 					<label for="gd">Day</label>
 					<select id="gd" bind:value={gd} onchange={fromGregorian}>
-						{#each gregorianDays as d}
+						{#each gregorianDays as d (d)}
 							<option value={d}>{d}</option>
 						{/each}
 					</select>
@@ -168,7 +168,7 @@
 				<div class="select-group">
 					<label for="hy">سال</label>
 					<select id="hy" bind:value={hy} onchange={fromHijri}>
-						{#each hijriYears as y}
+						{#each hijriYears as y (y)}
 							<option value={y}>{toPersian(y)}</option>
 						{/each}
 					</select>
@@ -176,7 +176,7 @@
 				<div class="select-group">
 					<label for="hm">ماه</label>
 					<select id="hm" bind:value={hm} onchange={fromHijri}>
-						{#each HIJRI_MONTHS as name, i}
+						{#each HIJRI_MONTHS as name, i (i)}
 							<option value={i + 1}>{name}</option>
 						{/each}
 					</select>
@@ -184,7 +184,7 @@
 				<div class="select-group">
 					<label for="hd">روز</label>
 					<select id="hd" bind:value={hd} onchange={fromHijri}>
-						{#each hijriDays as d}
+						{#each hijriDays as d (d)}
 							<option value={d}>{toPersian(d)}</option>
 						{/each}
 					</select>
