@@ -1,2 +1,43 @@
+/* ── Persian font (must be first @import) ──────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap');
+
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
+
+/* ── Design tokens ─────────────────────────────────────────────────────────── */
+:root {
+	--color-primary: #0d6e6e;
+	--color-primary-dark: #095858;
+	--color-surface: #ffffff;
+	--color-bg: #f4fafa;
+	--color-bg-subtle: #eaf5f5;
+	--color-border: #c8e6e6;
+	--color-text: #0c2e2e;
+	--color-muted-text: #4a7a7a;
+	--color-friday: #c0392b;
+}
+
+/* ── Global reset / RTL base ───────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	direction: rtl;
+	font-family: 'Vazirmatn', system-ui, sans-serif;
+	font-size: 16px;
+	color: var(--color-text);
+	background: var(--color-bg);
+	-webkit-font-smoothing: antialiased;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
+button {
+	font-family: inherit;
+}
