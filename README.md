@@ -35,14 +35,14 @@ bunx wrangler pages dev .svelte-kit/cloudflare
 
 ## Documentation
 
-| Section | Description |
-| --- | --- |
-| [Product overview](docs/product/overview.md) | Vision, features, non-goals |
-| [Roadmap](docs/product/roadmap.md) | What's done and what's next |
-| [Architecture overview](docs/architecture/overview.md) | System design, request lifecycle |
-| [ADR index](docs/architecture/decisions/README.md) | All architectural decisions |
-| [Development guide](docs/guides/development.md) | Local setup, commands, code structure |
-| [Deployment guide](docs/guides/deployment.md) | CI/CD pipeline, secrets, Cloudflare Pages |
+| Section                                                | Description                               |
+| ------------------------------------------------------ | ----------------------------------------- |
+| [Product overview](docs/product/overview.md)           | Vision, features, non-goals               |
+| [Roadmap](docs/product/roadmap.md)                     | What's done and what's next               |
+| [Architecture overview](docs/architecture/overview.md) | System design, request lifecycle          |
+| [ADR index](docs/architecture/decisions/README.md)     | All architectural decisions               |
+| [Development guide](docs/guides/development.md)        | Local setup, commands, code structure     |
+| [Deployment guide](docs/guides/deployment.md)          | CI/CD pipeline, secrets, Cloudflare Pages |
 
 ---
 

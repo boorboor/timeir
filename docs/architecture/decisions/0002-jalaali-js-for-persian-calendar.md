@@ -38,10 +38,12 @@ implementation is short and well-understood.
 ### Consequences
 
 **Positive:**
+
 - One small, auditable dependency
 - Leap year correctness up to 2090+ (Borkowski algorithm)
 - Julian Day approach makes Gregorian↔Hijri chain cleanly composable
 
 **Negative:**
+
 - jalaali-js has no TypeScript types — a local `jalaali.d.ts` declaration file
   was added to `src/lib/` to satisfy the type checker

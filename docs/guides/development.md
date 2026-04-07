@@ -2,11 +2,11 @@
 
 ## Prerequisites
 
-| Tool      | Version  | Install                       |
-| --------- | -------- | ----------------------------- |
-| Bun       | ≥ 1.1    | `curl -fsSL https://bun.sh/install \| bash` |
-| Node.js   | ≥ 20     | Only needed if not using Bun  |
-| Wrangler  | included | `bunx wrangler` — no global install needed |
+| Tool     | Version  | Install                                     |
+| -------- | -------- | ------------------------------------------- |
+| Bun      | ≥ 1.1    | `curl -fsSL https://bun.sh/install \| bash` |
+| Node.js  | ≥ 20     | Only needed if not using Bun                |
+| Wrangler | included | `bunx wrangler` — no global install needed  |
 
 ## Local development
 

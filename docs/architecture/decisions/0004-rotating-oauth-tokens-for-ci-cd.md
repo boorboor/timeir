@@ -38,6 +38,7 @@ without it.
 **C — Rotating OAuth token (chosen)**
 Cloudflare's OAuth flow issues short-lived (1h) access tokens + a rotating refresh token.
 Each CI deploy:
+
 1. Exchanges the stored refresh token for a new access token + new refresh token
 2. Writes the new token pair to `~/.config/.wrangler/config/default.toml` on the runner
 3. Wrangler reads this config file (same as local dev auth) — no `CLOUDFLARE_API_TOKEN` needed
@@ -48,10 +49,12 @@ Each CI deploy:
 **Chosen: Option C** — pragmatic given the inability to create API tokens programmatically.
 
 GitHub secrets required:
+
 - `CLOUDFLARE_REFRESH_TOKEN` — rotated after each deploy
 - `GH_PAT` — GitHub token with `repo` scope, used by CI to update the secret
 
 Implemented in `.github/workflows/ci.yml`:
+
 ```yaml
 - name: Deploy to Cloudflare Pages
   if: github.ref == 'refs/heads/main' && github.event_name == 'push'
@@ -70,10 +73,12 @@ Implemented in `.github/workflows/ci.yml`:
 ### Consequences
 
 **Positive:**
+
 - Fully automated — no manual steps after initial secret setup
 - No long-lived static credentials stored
 
 **Negative:**
+
 - If two `main` deploys run concurrently, the second will fail (both try to use the same
   refresh token; first one invalidates it). Acceptable: `main` deploys are rare and sequential.
 - If a deploy fails after the token refresh but before the secret update, the secret
@@ -85,6 +90,7 @@ Implemented in `.github/workflows/ci.yml`:
 ### Future migration path
 
 When convenient, replace this approach with a proper Cloudflare API token:
+
 1. Create token at `dash.cloudflare.com/profile/api-tokens` (Pages: Edit)
 2. `gh secret set CLOUDFLARE_API_TOKEN --repo boorboor/timeir`
 3. Simplify the deploy step to: `CLOUDFLARE_API_TOKEN=${{ secrets.CLOUDFLARE_API_TOKEN }} wrangler pages deploy ...`

@@ -71,10 +71,10 @@ No component fetches its own data.
 
 ## Key design constraints
 
-| Constraint | Why |
-|------------|-----|
-| No client-side `fetch` for date data | Calendar math is deterministic — run it locally |
+| Constraint                                 | Why                                                        |
+| ------------------------------------------ | ---------------------------------------------------------- |
+| No client-side `fetch` for date data       | Calendar math is deterministic — run it locally            |
 | Server computes date in visitor's timezone | Avoids wrong date for users near midnight in non-UTC zones |
-| Week starts Saturday | Iranian convention (شنبه is the first day of the week) |
-| 6×7 = 42 calendar cells always | Simplifies grid rendering — no variable-length rows |
-| RTL by default | All text is Persian/Arabic; layout respects `dir="rtl"` |
+| Week starts Saturday                       | Iranian convention (شنبه is the first day of the week)     |
+| 6×7 = 42 calendar cells always             | Simplifies grid rendering — no variable-length rows        |
+| RTL by default                             | All text is Persian/Arabic; layout respects `dir="rtl"`    |

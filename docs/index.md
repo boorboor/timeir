@@ -5,14 +5,14 @@ deployed on Cloudflare Pages edge infrastructure.
 
 ## Contents
 
-| Section | Description |
-|---------|-------------|
-| [Product](./product/overview.md) | Vision, goals, features |
-| [Roadmap](./product/roadmap.md) | Planned and in-progress work |
-| [Architecture](./architecture/overview.md) | System design, data flow, tech decisions |
-| [ADRs](./architecture/decisions/README.md) | Architecture Decision Records |
-| [Development Guide](./guides/development.md) | Local setup, dev workflow |
-| [Deployment Guide](./guides/deployment.md) | CI/CD pipeline, Cloudflare Pages |
+| Section                                      | Description                              |
+| -------------------------------------------- | ---------------------------------------- |
+| [Product](./product/overview.md)             | Vision, goals, features                  |
+| [Roadmap](./product/roadmap.md)              | Planned and in-progress work             |
+| [Architecture](./architecture/overview.md)   | System design, data flow, tech decisions |
+| [ADRs](./architecture/decisions/README.md)   | Architecture Decision Records            |
+| [Development Guide](./guides/development.md) | Local setup, dev workflow                |
+| [Deployment Guide](./guides/deployment.md)   | CI/CD pipeline, Cloudflare Pages         |
 
 ---
 

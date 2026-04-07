@@ -8,6 +8,7 @@ date: 2025-01-01
 ## Context and Problem Statement
 
 timeir needs to:
+
 - Render the correct date in the visitor's local timezone without client-side flash
 - Load fast globally (target audience: Iranian diaspora worldwide)
 - Stay cheap to run (personal/hobby project — ideally free tier)
@@ -39,11 +40,13 @@ timeir needs to:
 ### Consequences
 
 **Positive:**
+
 - Sub-100ms TTFB from any region
 - Full SSR for SEO without managing a Node.js server
 - Access to Cloudflare-native request metadata (`cf.timezone`, `cf.country`, etc.)
 
 **Negative:**
+
 - Cloudflare Workers environment has constraints: no `fs`, limited Node built-ins
   (mitigated by `nodejs_compat` flag in `wrangler.toml`)
 - Wrangler tooling for local dev adds a layer vs plain `vite dev`

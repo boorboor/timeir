@@ -28,9 +28,13 @@ made SSR date meaningless for SEO.
 ## Considered Options
 
 **A — Client-side override (original approach)**
+
 ```ts
-$effect(() => { today = getToday(); }); // re-run after hydration
+$effect(() => {
+	today = getToday();
+}); // re-run after hydration
 ```
+
 Works but causes a flash if server date ≠ client date. SSR title is wrong for off-UTC users.
 
 **B — Server uses UTC only**
@@ -47,27 +51,34 @@ Available as `platform.cf.timezone` in SvelteKit's `load()` event.
 ```ts
 // +page.server.ts
 export function load({ platform }) {
-  const tz = platform?.cf?.timezone;   // e.g. "Asia/Tehran"
-  return { today: getToday(tz) };
+	const tz = platform?.cf?.timezone; // e.g. "Asia/Tehran"
+	return { today: getToday(tz) };
 }
 ```
 
 `getToday(tz)` uses `Intl.DateTimeFormat` to extract local date parts:
+
 ```ts
 const parts = new Intl.DateTimeFormat('en-US', {
-  timeZone: tz, year: 'numeric', month: 'numeric', day: 'numeric', weekday: 'long'
+	timeZone: tz,
+	year: 'numeric',
+	month: 'numeric',
+	day: 'numeric',
+	weekday: 'long'
 }).formatToParts(new Date());
 ```
 
 ### Consequences
 
 **Positive:**
+
 - SSR renders the correct date for the visitor's timezone — no flash, no client override
 - `<title>` contains the right Jalali date for SEO
 - Client-side `$effect` and `untrack` complexity removed from `+page.svelte`
 - Falls back gracefully to UTC when `cf.timezone` is undefined (local dev, non-Cloudflare)
 
 **Negative:**
+
 - Ties the correct-date behaviour to Cloudflare's IP geolocation accuracy
 - `platform.cf.timezone` is `undefined` in `vite dev` — local dev shows UTC date
   (acceptable; developers can use `wrangler pages dev` for full fidelity)
