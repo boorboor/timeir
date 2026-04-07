@@ -33,29 +33,24 @@ bunx wrangler pages dev .svelte-kit/cloudflare
 
 ---
 
+## Documentation
+
+| Section | Description |
+| --- | --- |
+| [Product overview](docs/product/overview.md) | Vision, features, non-goals |
+| [Roadmap](docs/product/roadmap.md) | What's done and what's next |
+| [Architecture overview](docs/architecture/overview.md) | System design, request lifecycle |
+| [ADR index](docs/architecture/decisions/README.md) | All architectural decisions |
+| [Development guide](docs/guides/development.md) | Local setup, commands, code structure |
+| [Deployment guide](docs/guides/deployment.md) | CI/CD pipeline, secrets, Cloudflare Pages |
+
+---
+
 ## CI/CD
 
-### CI (GitHub Actions)
+Every push to `main`: lint → typecheck → build → deploy to https://timeir.pages.dev
 
-Every push and pull request runs `.github/workflows/ci.yml`:
-
-- `bun run lint` — Prettier + ESLint
-- `bun run check` — svelte-check (TypeScript + Svelte)
-- `bun run build` — production build with `adapter-cloudflare`
-
-### CD (Cloudflare Pages)
-
-Deployment is handled by **Cloudflare Pages' native GitHub integration** — no GitHub Actions secrets required.
-
-**One-time setup:**
-
-1. Push this repo to GitHub
-2. Go to [dash.cloudflare.com](https://dash.cloudflare.com) → **Pages** → **Create a project** → **Connect to Git**
-3. Select your GitHub repo and configure:
-   - **Branch:** `main`
-   - **Build command:** `bun run build`
-   - **Build output directory:** `.svelte-kit/cloudflare`
-4. Save — Cloudflare will auto-deploy on every push to `main` and create preview URLs for every PR branch
+See the [deployment guide](docs/guides/deployment.md) for secrets setup and troubleshooting.
 
 ---
 
