@@ -1,18 +1,14 @@
 <script lang="ts">
-	import { untrack } from 'svelte';
 	import { resolveRoute } from '$app/paths';
-	import { getToday } from '$lib/calendar';
 	import TodayBanner from '$lib/components/TodayBanner.svelte';
 	import CalendarGrid from '$lib/components/CalendarGrid.svelte';
 	import DateConverter from '$lib/components/DateConverter.svelte';
 
 	let { data } = $props();
 
-	// Use server-rendered data for SSR/SEO; sync to client local timezone on mount
-	let today = $state(untrack(() => data.today));
-	$effect(() => {
-		today = getToday();
-	});
+	// Server computes today in the visitor's timezone (via Cloudflare cf.timezone).
+	// No client-side override needed.
+	const today = $derived(data.today);
 
 	let activeTab = $state<'calendar' | 'converter'>('calendar');
 </script>

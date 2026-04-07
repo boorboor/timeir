@@ -9,25 +9,15 @@
 
 	let { today }: Props = $props();
 
-	// Initialized once from today; managed independently after that
+	// Starts at today's month; user navigation drives changes independently.
+	// untrack prevents the $state initialiser from creating a reactive dependency on `today`.
 	let viewJy = $state(untrack(() => today.jy));
 	let viewJm = $state(untrack(() => today.jm));
-
-	// When today changes (e.g. SSR→client timezone correction), follow it only
-	// if the user hasn't navigated away from the current month.
-	let userNavigated = false;
-	$effect(() => {
-		if (!userNavigated) {
-			viewJy = today.jy;
-			viewJm = today.jm;
-		}
-	});
 
 	let grid = $derived(getCalendarGrid(viewJy, viewJm, today));
 	let isCurrentMonth = $derived(viewJy === today.jy && viewJm === today.jm);
 
 	function prevMonth() {
-		userNavigated = true;
 		if (viewJm === 1) {
 			viewJm = 12;
 			viewJy--;
@@ -37,7 +27,6 @@
 	}
 
 	function nextMonth() {
-		userNavigated = true;
 		if (viewJm === 12) {
 			viewJm = 1;
 			viewJy++;
@@ -47,17 +36,14 @@
 	}
 
 	function prevYear() {
-		userNavigated = true;
 		viewJy--;
 	}
 
 	function nextYear() {
-		userNavigated = true;
 		viewJy++;
 	}
 
 	function goToToday() {
-		userNavigated = false;
 		viewJy = today.jy;
 		viewJm = today.jm;
 	}

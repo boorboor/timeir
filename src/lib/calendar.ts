@@ -142,16 +142,40 @@ export function hijriMonthLength(hy: number, hm: number): number {
 	return 29;
 }
 
-export function getToday(): TodayData {
+const DOW_MAP: Record<string, number> = {
+	Sun: 0,
+	Mon: 1,
+	Tue: 2,
+	Wed: 3,
+	Thu: 4,
+	Fri: 5,
+	Sat: 6
+};
+
+/**
+ * Returns today's date in all three calendar systems.
+ * @param tz  Optional IANA timezone string (e.g. "Asia/Tehran").
+ *            When provided, the date is computed in that timezone rather than
+ *            the runtime's local timezone. Falls back to runtime local when omitted.
+ */
+export function getToday(tz?: string): TodayData {
 	const now = new Date();
-	const gy = now.getFullYear();
-	const gm = now.getMonth() + 1;
-	const gd = now.getDate();
+	const fmt = new Intl.DateTimeFormat('en-US', {
+		timeZone: tz,
+		year: 'numeric',
+		month: 'numeric',
+		day: 'numeric',
+		weekday: 'short'
+	});
+	const parts = Object.fromEntries(fmt.formatToParts(now).map((p) => [p.type, p.value]));
+	const gy = Number(parts.year);
+	const gm = Number(parts.month);
+	const gd = Number(parts.day);
 	return {
 		jalali: gregorianToJalali(gy, gm, gd),
 		gregorian: { gy, gm, gd },
 		hijri: gregorianToHijri(gy, gm, gd),
-		dayOfWeek: now.getDay()
+		dayOfWeek: DOW_MAP[parts.weekday] ?? now.getDay()
 	};
 }
 
